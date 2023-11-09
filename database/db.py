@@ -61,9 +61,11 @@ class Database:
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
+                cursor.execute("SET FOREIGN_KEY_CHECKS=0")
                 sql = f"DELETE FROM {table} WHERE {key1}={value1} and {key2}={value2}"
                 print(sql)
                 cursor.execute(sql)
+                cursor.execute("SET FOREIGN_KEY_CHECKS=1")
             con.commit()
             return "Successful delete!"
         except Exception as ex:
