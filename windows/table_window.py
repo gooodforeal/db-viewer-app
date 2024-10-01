@@ -1,3 +1,4 @@
+"""File with TableWindow class"""
 import customtkinter
 import customtkinter as ctk
 import tkinter
@@ -7,7 +8,9 @@ from functions.funcs import is_float
 
 
 class TableWindow(ctk.CTk):
+    """This class manages opening all tables in application"""
     def __init__(self, parent: ctk.CTk, title: str) -> None:
+        """Constructor of class"""
         super().__init__()
         self.title = title
         self.db_obj = Database()
@@ -25,6 +28,7 @@ class TableWindow(ctk.CTk):
 
 
     def set_style(self):
+        """Method to set styles"""
         # Styles
         self.style = ttk.Style()
         self.style.theme_use("default")
@@ -69,6 +73,7 @@ class TableWindow(ctk.CTk):
         )
 
     def insert_data_into_db(self) -> None:
+        """Method to insert data to database"""
         data = []
         keys = self.columns
         for entry in self.entries:
@@ -84,6 +89,7 @@ class TableWindow(ctk.CTk):
         self.root.destroy()
 
     def delete_data_from_db(self) -> None:
+        """Method to delete data from database"""
         key = self.key_find
         value = self.entry_delete.get()
         if value.isdigit():
@@ -92,6 +98,7 @@ class TableWindow(ctk.CTk):
         self.root.destroy()
 
     def delete_data_from_db_pair(self) -> None:
+        """Method to delete data from database using pair of primary keys"""
         key1 = self.key_find[0]
         key2 = self.key_find[1]
         value1 = self.entry1_delete.get()
@@ -103,6 +110,7 @@ class TableWindow(ctk.CTk):
         self.root.destroy()
 
     def draw_widgets_pair(self) -> None:
+        """Method to draw widgets 1"""
         self.set_style()
         # Tabs
         tab_control = ttk.Notebook(self.root)
@@ -164,6 +172,7 @@ class TableWindow(ctk.CTk):
         self.frame_delete.pack(pady=5)
 
     def draw_widgets(self) -> None:
+        """Method to draw widgets 2"""
         self.set_style()
         # Tabs
         tab_control = ttk.Notebook(self.root)
@@ -219,6 +228,7 @@ class TableWindow(ctk.CTk):
         self.frame_delete.pack(pady=5)
 
     def grab_focus(self) -> None:
+        """Making window running foreground"""
         self.root.grab_set()
         self.root.focus_set()
         self.root.wait_window()

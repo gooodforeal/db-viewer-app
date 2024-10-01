@@ -1,3 +1,4 @@
+"""File with MainWindow class"""
 import customtkinter
 import customtkinter as ctk
 from .table_window import TableWindow
@@ -6,7 +7,9 @@ from PIL import Image
 
 
 class MainWindow(ctk.CTk):
+    """This class manages main window of application"""
     def __init__(self) -> None:
+        """Constructor of class"""
         super().__init__()
         self.geometry("1080x400")
         self.resizable(False, False)
@@ -16,30 +19,39 @@ class MainWindow(ctk.CTk):
         self.draw_widgets()
 
     def open_computers(self) -> None:
+        """Method to open table"""
         window: TableWindow = TableWindow(self, "computers")
 
     def open_companies(self) -> None:
+        """Method to open table"""
         window: TableWindow = TableWindow(self, "service_companies")
 
     def open_plans(self) -> None:
+        """Method to open table"""
         window: TableWindow = TableWindow(self, "plans")
 
     def open_rooms(self) -> None:
+        """Method to open table"""
         window: TableWindow = TableWindow(self, "rooms")
 
     def open_types(self) -> None:
+        """Method to open table"""
         window: TableWindow = TableWindow(self, "computer_type")
 
     def open_components(self) -> None:
+        """Method to open table"""
         window: TableWindow = TableWindow(self, "components")
 
     def open_characteristics(self) -> None:
+        """Method to open table"""
         window: TableWindow = TableWindow(self, "computer_characteristics")
 
     def open_functions(self) -> None:
+        """Method to open table"""
         window: FunctionsWindow = FunctionsWindow(self, "functions")
 
     def draw_widgets(self) -> None:
+        """Drawing all widgets on scheme"""
         # Main scheme
         # scheme_img = tkinter.PhotoImage(file="./assets/main.png")
         scheme_img = customtkinter.CTkImage(Image.open("./assets/main.png"), size=(1040, 315))
@@ -123,4 +135,5 @@ class MainWindow(ctk.CTk):
         author.place(x=1010, y=375)
 
     def run_app(self) -> None:
+        """Running an application"""
         self.mainloop()

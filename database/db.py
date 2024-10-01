@@ -1,10 +1,17 @@
+""" File witch Database class"""
 import pymysql
 from data.auth_data import *
 
 
 class Database:
+    """Class to manage database"""
     @staticmethod
     def get_connection() -> pymysql.Connection:
+        """This function returns connector to mysql database
+
+        :return Pymysql connection
+        :rtype pymysql.Connection
+        """
         try:
             connect = pymysql.connect(
                 host=host,
@@ -19,6 +26,13 @@ class Database:
             print(ex)
 
     def get_table(self, table: str) -> list[dict]:
+        """This function returns list with notes from db table
+
+        :param table: Name of table from database
+        :type table: str
+        :return List of dictionaries from database table
+        :rtype List[dict]
+        """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
@@ -32,6 +46,17 @@ class Database:
             con.close()
 
     def insert_data(self, table: str, data: str, keys: str) -> str:
+        """This function inserts data to a db table
+
+        :param table: Name of table from database
+        :type table: str
+        :param data: values to insert
+        :type data: str
+        :param keys: keys of db table
+        :type keys: str
+        :return Notification log
+        :rtype str
+          """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
@@ -45,6 +70,17 @@ class Database:
             con.close()
 
     def delete_data(self, table: str, key: str, value: int) -> str:
+        """This function deletes data from db table
+
+        :param table: Name of table from database
+        :type table: str
+        :param value: value condition argument
+        :type value: str
+        :param key: key of note in db table
+        :type key: str
+        :return Notification log
+        :rtype str
+        """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
@@ -58,6 +94,21 @@ class Database:
             con.close()
 
     def delete_data_pair(self, table: str, key1: str, key2: str,  value1: int,  value2: int) -> str:
+        """This function deletes data from db table with two primary keys
+
+        :param table: Name of table from database
+        :type table: str
+        :param value1: value condition argument
+        :type value1: str
+        :param value2: second value condition argument
+        :type value2: str
+        :param key1: key of note in db table
+        :type key1: str
+        :param key2: second key of note in db table
+        :type key2: str
+        :return Notification log
+        :rtype str
+        """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
@@ -74,6 +125,11 @@ class Database:
             con.close()
 
     def call_proc_active_count(self) -> list or str:
+        """This function calls mysql procedure
+
+        :return Notification log or list of notes
+        :rtype str | list
+        """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
@@ -89,6 +145,11 @@ class Database:
             con.close()
 
     def call_proc_active(self) -> list or str:
+        """This function calls mysql procedure
+
+        :return Notification log or list of notes
+        :rtype str | list
+        """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
@@ -104,6 +165,11 @@ class Database:
             con.close()
 
     def call_func_plan_price(self, plan: str) -> list or str:
+        """This function calls mysql function
+
+        :return Notification log or list of notes
+        :rtype str | list
+        """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:
@@ -119,6 +185,11 @@ class Database:
             con.close()
 
     def call_comp_count(self, comp: str) -> list or str:
+        """This function calls mysql function
+
+        :return Notification log or list of notes
+        :rtype str | list
+        """
         try:
             con = self.get_connection()
             with con.cursor() as cursor:

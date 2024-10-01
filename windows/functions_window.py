@@ -1,3 +1,4 @@
+"""File with FunctionsWindow class"""
 import customtkinter
 import customtkinter as ctk
 import tkinter
@@ -6,7 +7,9 @@ from database.db import Database
 
 
 class FunctionsWindow(ctk.CTk):
+    """This class manages functions module in application"""
     def __init__(self, parent, title):
+        """Constructor of class"""
         super().__init__()
         self.title = title
         self.db_obj = Database()
@@ -20,18 +23,21 @@ class FunctionsWindow(ctk.CTk):
         self.grab_focus()
 
     def get_comp_count(self) -> None:
+        """Getting and drawing components count"""
         comp = self.entry_comp.get()
         comp_count = self.db_obj.call_comp_count(comp)
         count = list(comp_count[0].values())[0]
         self.comp_count_var.set(f"Количество: {count}")
 
     def get_plan_price(self) -> None:
+        """Getting and drawing plan price"""
         plan = self.entry_price.get()
         active_data_price = self.db_obj.call_func_plan_price(plan)
         price = list(active_data_price[0].values())[0]
         self.result_var.set(f"Цена тарифа: {price}")
 
     def set_styles(self) -> None:
+        """Setting styles for GUI"""
         # Styles
         self.style = ttk.Style()
         self.style.theme_use("default")
@@ -76,6 +82,7 @@ class FunctionsWindow(ctk.CTk):
         )
 
     def draw_widgets(self) -> None:
+        """Drawing all widgets on form"""
         # Styles exec
         self.set_styles()
         # Tabs
@@ -143,6 +150,7 @@ class FunctionsWindow(ctk.CTk):
         comp_count_frame.pack()
 
     def grab_focus(self) -> None:
+        """Making window running foreground"""
         self.root.grab_set()
         self.root.focus_set()
         self.root.wait_window()
